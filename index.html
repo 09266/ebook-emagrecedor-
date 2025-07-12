@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transformação Total de Verão</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #2a2a2a;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    header h1 {
+      color: #ff4d4d;
+      font-size: 2.5rem;
+      text-shadow: 1px 1px 5px #000;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #f8f8f8;
+    }
+    .main {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      text-align: center;
+    }
+    .main-text ul {
+      list-style: none;
+      padding: 0;
+    }
+    .main-text li::before {
+      content: "✔️ ";
+      margin-right: 5px;
+    }
+    .main-text li {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .cta-button {
+      background-color: #ff3333;
+      color: #fff;
+      padding: 15px 30px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 30px;
+      display: inline-block;
+      margin-top: 20px;
+      box-shadow: 0 0 10px #ff3333;
+    }
+    .timer {
+      margin-top: 20px;
+      font-size: 1.4rem;
+      color: #ffb347;
+      font-weight: bold;
+    }
+    .carousel {
+      margin-top: 50px;
+      background-color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #000;
+      text-align: center;
+    }
+    .carousel p {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .carousel span {
+      font-weight: bold;
+      color: #ff7070;
+    }
+
+    @media (max-width: 768px) {
+      .main {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>BLACK WEEK DA TRANSFORMAÇÃO CORPORAL</h1>
+      <p><strong>Desinche. Acelere. Renove.</strong> Resultados visíveis em até 7 dias</p>
+    </header>
+
+    <section class="main">
+      <div class="main-text">
+        <ul>
+          <li>Redução de inchaço</li>
+          <li>Ativação metabólica</li>
+          <li>Aceleração do emagrecimento</li>
+          <li>Dicas práticas e eficazes</li>
+          <li>Suporte para manter o peso ideal</li>
+        </ul>
+        <a href="#" class="cta-button">Quero garantir meu ebook agora!</a>
+        <div class="timer" id="timer">Oferta termina em: 00:30:00</div>
+      </div>
+    </section>
+
+    <section class="carousel">
+      <p id="comment">"Esse ebook mudou minha vida! Perdi 6kg em duas semanas!"</p>
+      <p><span id="author">– Amanda S.</span></p>
+    </section>
+  </div>
+
+  <script>
+    // Temporizador regressivo
+    let timerDisplay = document.getElementById('timer');
+    let timeLeft = 1800;
+
+    function updateTimer() {
+      let min = Math.floor(timeLeft / 60);
+      let sec = timeLeft % 60;
+      timerDisplay.textContent = `Oferta termina em: ${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+      timeLeft--;
+      if (timeLeft < 0) {
+        timerDisplay.textContent = "Oferta encerrada!";
+        clearInterval(timerInterval);
+      }
+    }
+    const timerInterval = setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Comentários automáticos
+    const comments = [
+      { text: "Esse ebook mudou minha vida! Perdi 6kg em duas semanas!", author: "Amanda S." },
+      { text: "Simples, direto e muito eficaz. Emagreci 8kg sem sofrimento!", author: "Carlos M." },
+      { text: "Nunca pensei que conseguiria resultados tão rápidos!", author: "Beatriz F." },
+      { text: "Já recomendei para todas minhas amigas!", author: "Júlia P." }
+    ];
+
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % comments.length;
+      document.getElementById('comment').textContent = `"${comments[index].text}"`;
+      document.getElementById('author').textContent = `– ${comments[index].author}`;
+    }, 5000);
+  </script>
+</body>
+</html>
